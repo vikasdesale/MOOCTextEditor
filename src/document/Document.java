@@ -150,12 +150,8 @@ public abstract class Document {
 	public double getFleschScore()
 	{
 	    // TODO: Implement this method in week 1
-		int words=getNumWords();
-		int sentences=getNumSentences();
-		int syllables=getNumSyllables();
-		
-		double FleshScore=206.835-1.015*(words/sentences)-84.6*(syllables/words);
-	    return FleshScore;
+	    return 206.835 - 1.015*((float) getNumWords() / (float) getNumSentences()) - 84.6 * ( (float) getNumSyllables() / (float) getNumWords());
+
 	}
 	
 	

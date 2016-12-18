@@ -36,7 +36,8 @@ public class BasicDocument extends Document
 	{
 		//TODO: Implement this method in week 1 according to the comments above.  
 		// See the Module 1 support videos if you need help.
-	    return 0;
+		List<String> tokens = getTokens("[a-zA-Z]+");
+	    return tokens.size();
 	}
 	
 	/**
@@ -56,8 +57,8 @@ public class BasicDocument extends Document
 	{
 	    //TODO: Implement this method.  See the Module 1 support videos 
         // if you need help.
-     
-		return 0;
+		List<String> tokens = getTokens("[^!?.]+");
+	    return tokens.size();
 	}
 	
 	/**

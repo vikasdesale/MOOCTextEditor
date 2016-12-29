@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-/** A class for timing the EfficientDocument and BasicDocument classes
+/** A class for timing the eDocument and bDocument classes
  * 
  * @author UC San Diego Intermediate Programming MOOC team
  *
@@ -33,7 +33,9 @@ public class DocumentBenchmarking {
 		// THe number of characters to start with. 
 		// You can play around with this.
 		int start = 50000;
-		
+		long startTime;
+		long endTime;
+		double totalTime;
 		// TODO: Fill in the rest of this method so that it runs two loops
 		// and prints out timing results as described in the assignment 
 		// instructions and following the pseudocode below.
@@ -41,23 +43,45 @@ public class DocumentBenchmarking {
 				numToCheck += increment)
 		{
 			// numToCheck holds the number of characters that you should read from the 
-			// file to create both a BasicDocument and an EfficientDocument.  
+			// file to create both a bDocument and an eDocument.  
 			
 			/* Each time through this loop you should:
 			 * 1. Print out numToCheck followed by a tab (\t) (NOT a newline)
 			 * 2. Read numToCheck characters from the file into a String
 			 *     Hint: use the helper method below.
 			 * 3. Time a loop that runs trials times (trials is the variable above) that:
-			 *     a. Creates a BasicDocument 
+			 *     a. Creates a bDocument 
 			 *     b. Calls fleshScore on this document
 			 * 4. Print out the time it took to complete the loop in step 3 
 			 *      (on the same line as the first print statement) followed by a tab (\t)
 			 * 5. Time a loop that runs trials times (trials is the variable above) that:
-			 *     a. Creates an EfficientDocument 
+			 *     a. Creates an eDocument 
 			 *     b. Calls fleshScore on this document
 			 * 6. Print out the time it took to complete the loop in step 5 
 			 *      (on the same line as the first print statement) followed by a newline (\n) 
 			 */  
+			System.out.print(numToCheck+"\t");
+			
+			String allText = getStringFromFile(textfile, numToCheck);
+			
+			//Calculating how long it takes to create and execute BasicDocument
+			startTime = System.nanoTime();
+			for(int i=0; i<trials;i++){
+				new BasicDocument(allText).getFleschScore();
+			}
+			endTime = System.nanoTime();
+			totalTime =  (double)(endTime-startTime)/1000000000;
+			System.out.print(totalTime+"\t");
+			 
+			//Calculating how long it takes to create and execute EfficientDocument
+			startTime = System.nanoTime();
+			for(int i=0; i<trials;i++){
+				new EfficientDocument(allText).getFleschScore();
+			}
+			endTime = System.nanoTime();
+			totalTime = (double)(endTime-startTime)/1000000000;
+			System.out.print(totalTime+"\n");
+			 
 			 
 		}
 	
